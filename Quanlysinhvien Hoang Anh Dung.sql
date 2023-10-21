@@ -84,11 +84,6 @@ SELECT * from Thongtinsinhvien
 SELECT * from Hososinhvien
 SELECT * from Bangdiemsinhvien
 SELECT * from Diemdanhsinhvien
--- Group by
-Use Quanlyhocsinh
-SELECT Masosinhvien AS MaKhachHang,SUM(Ketquaxeploaisinhvien) AS SOLUONG from Thongtinsinhvien GROUP BY (Masosinhvien) ORDER BY MaKhachHang DESC
-SELECT Masosinhvien AS MaKhachHang,SUM(Ketquaxeploaisinhvien) AS SOLUONG from Thongtinsinhvien GROUP BY (Masosinhvien)
-HAVING  SUM(Ketquaxeploaisinhvien) >6
 
 -- Transaction
 Use Quanlyhocsinh
