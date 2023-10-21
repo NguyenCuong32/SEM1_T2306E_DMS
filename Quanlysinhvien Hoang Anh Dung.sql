@@ -25,7 +25,7 @@ Masosinhvien nvarchar(20) not null,
     Bangdiemsinhvien NVARCHAR(20) not null,
     Diemsinhvien NVARCHAR(20) not null
     PRIMARY KEY (Masosinhvien),
-foreign key (Masosinhvien) references Hososinhvien(Masosinhvien)	
+    foreign key (Masosinhvien) references Hososinhvien(Masosinhvien)	
 )
 End
 Go
@@ -36,7 +36,7 @@ Create Table Diemdanhsinhvien(
      Madiemdanhsinhvien NVARCHAR(20) not null,
     Sobuoidiemdanhsinhvien NVARCHAR(20) not null
     PRIMARY KEY (Masosinhvien),
-	foreign key (Masosinhvien) references Hososinhvien(Masosinhvien)
+    foreign key (Masosinhvien) references Hososinhvien(Masosinhvien)
 )	
 End
 Go
@@ -47,7 +47,7 @@ Create Table Thongtinsinhvien(
     Mabangdiemsinhvien NVARCHAR(20) not null,
     Ketquaxeploaisinhvien NVARCHAR(20) not null
     PRIMARY KEY (Masosinhvien),
-foreign key (Masosinhvien) references Hososinhvien(Masosinhvien)
+    foreign key (Masosinhvien) references Hososinhvien(Masosinhvien)
 )
 End
 
