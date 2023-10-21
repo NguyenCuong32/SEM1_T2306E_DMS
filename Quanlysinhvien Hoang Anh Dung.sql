@@ -1,4 +1,3 @@
-﻿
 -- Tạo Database
 IF Not EXISTS (SELECT name FROM master.sys.databases WHERE name = 'Quanlyhocsinh')
 BEGIN
@@ -13,7 +12,7 @@ Create Table Hososinhvien
 (
     Masosinhvien nvarchar(20) not null,
     Hotensinhvien nvarchar(64) null,
-    Malopsinhvien nvarchar(10) null,
+    Malopsinhvien nvarchar(20) null,
     Khoahocsinhvien nvarchar(20) null,
     PRIMARY KEY (Masosinhvien)
 )
@@ -22,10 +21,11 @@ Go
 If Not Exists( select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME ='Bangdiemsinhvien')
 Begin
 Create Table Bangdiemsinhvien(
-    Mabangdiemsinhvien NVARCHAR(10) not null,
-    Bangdiemsinhvien NVARCHAR(48) not null,
-    Diemsinhvien NVARCHAR(10) not null
-    PRIMARY KEY (Mabangdiemsinhvien)
+Masosinhvien nvarchar(20) not null,
+    Bangdiemsinhvien NVARCHAR(20) not null,
+    Diemsinhvien NVARCHAR(20) not null
+    PRIMARY KEY (Masosinhvien),
+foreign key (Masosinhvien) references Hososinhvien(Masosinhvien)	
 )
 End
 Go
@@ -33,19 +33,21 @@ If Not Exists( select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME ='Diemda
 Begin
 Create Table Diemdanhsinhvien(
     Masosinhvien nvarchar(20) not null,
-     Madiemdanhsinhvien NVARCHAR(10) not null,
-    Sobuoidiemdanhsinhvien NVARCHAR(48) not null
-    PRIMARY KEY (Masosinhvien,Madiemdanhsinhvien)
-)
+     Madiemdanhsinhvien NVARCHAR(20) not null,
+    Sobuoidiemdanhsinhvien NVARCHAR(20) not null
+    PRIMARY KEY (Masosinhvien),
+	foreign key (Masosinhvien) references Hososinhvien(Masosinhvien)
+)	
 End
 Go
 If Not Exists( select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME ='Thongtinsinhvien')
 Begin
 Create Table Thongtinsinhvien(
-    Masosinhvien NVARCHAR(10) not null,
-    Mabangdiemsinhvien NVARCHAR(48) not null,
-    Ketquaxeploaisinhvien NVARCHAR(10) not null
-    PRIMARY KEY (Masosinhvien,Mabangdiemsinhvien)
+    Masosinhvien NVARCHAR(20) not null,
+    Mabangdiemsinhvien NVARCHAR(20) not null,
+    Ketquaxeploaisinhvien NVARCHAR(20) not null
+    PRIMARY KEY (Masosinhvien),
+foreign key (Masosinhvien) references Hososinhvien(Masosinhvien)
 )
 End
 
@@ -75,8 +77,8 @@ VALUES(
     '2023'
 )
 
-Insert Into Bangdiemsinhvien  VALUES('1',N'Lập Trình C','10'),('2','Database','9'),('3','UI/UX','8')
-Insert Into Diemdanhsinhvien  VALUES('A123','A1','8'),('A124','A2','8'),('A125','A3','9')
+Insert Into Bangdiemsinhvien  VALUES('A123',N'Lập Trình C','10'),('A124',N'Database','9'),('A125',N'UI/UX','8')
+Insert Into Diemdanhsinhvien  VALUES('A123','B1','8'),('A124','B2','8'),('A125','B3','9')
 Insert Into Thongtinsinhvien  VALUES('A123','1','A'),('A124','2','A'),('A125','3','B')
 
 -- Select group
@@ -85,17 +87,6 @@ SELECT * from Thongtinsinhvien
 SELECT * from Hososinhvien
 SELECT * from Bangdiemsinhvien
 SELECT * from Diemdanhsinhvien
-
--- Transaction
-Use Quanlyhocsinh
-begin transaction
- begin transaction
-  select * from Hososinhvien where Masosinhvien = 'A123'
-  delete Hososinhvien where Masosinhvien = 'A123'
-  select * from Hososinhvien where Masosinhvien = 'A123' 
-  commit;
-  rollback;
-  select * from Hososinhvien where Masosinhvien = 'A123'
 
 -- Left Join
 Use Quanlyhocsinh
