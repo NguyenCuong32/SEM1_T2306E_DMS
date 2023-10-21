@@ -32,9 +32,10 @@ Go
 If Not Exists( select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME ='Diemdanhsinhvien')
 Begin
 Create Table Diemdanhsinhvien(
-    Madiemdanhsinhvien NVARCHAR(10) not null,
+    Masosinhvien nvarchar(20) not null,
+     Madiemdanhsinhvien NVARCHAR(10) not null,
     Sobuoidiemdanhsinhvien NVARCHAR(48) not null
-    PRIMARY KEY (Madiemdanhsinhvien)
+    PRIMARY KEY (Masosinhvien,Madiemdanhsinhvien)
 )
 End
 Go
@@ -75,7 +76,7 @@ VALUES(
 )
 
 Insert Into Bangdiemsinhvien  VALUES('1',N'Lập Trình C','10'),('2','Database','9'),('3','UI/UX','8')
-Insert Into Diemdanhsinhvien  VALUES('A1','8'),('A2','8'),('A3','9')
+Insert Into Diemdanhsinhvien  VALUES('A123','A1','8'),('A124','A2','8'),('A125','A3','9')
 Insert Into Thongtinsinhvien  VALUES('A123','1','A'),('A124','2','A'),('A125','3','B')
 
 -- Select group
