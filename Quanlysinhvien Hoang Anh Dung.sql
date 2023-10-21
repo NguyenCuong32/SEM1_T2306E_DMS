@@ -21,7 +21,7 @@ Go
 If Not Exists( select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME ='Bangdiemsinhvien')
 Begin
 Create Table Bangdiemsinhvien(
-Masosinhvien nvarchar(20) not null,
+    Masosinhvien nvarchar(20) not null,
     Bangdiemsinhvien NVARCHAR(20) not null,
     Diemsinhvien NVARCHAR(20) not null
     PRIMARY KEY (Masosinhvien),
@@ -33,7 +33,7 @@ If Not Exists( select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME ='Diemda
 Begin
 Create Table Diemdanhsinhvien(
     Masosinhvien nvarchar(20) not null,
-     Madiemdanhsinhvien NVARCHAR(20) not null,
+    Madiemdanhsinhvien NVARCHAR(20) not null,
     Sobuoidiemdanhsinhvien NVARCHAR(20) not null
     PRIMARY KEY (Masosinhvien),
     foreign key (Masosinhvien) references Hososinhvien(Masosinhvien)
